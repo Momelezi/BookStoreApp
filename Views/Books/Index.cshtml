@@ -2,6 +2,17 @@
 
 @{
     ViewData["Title"] = "Index";
+    string HasImage(Book book)
+    {
+        if (book.ImageUrl != "" && book.ImageUrl != null)
+        {
+            return "fa-solid fa-check";
+        }
+        else
+        {
+            return "fa-solid fa-x";
+        }
+    }
 }
 
 <h1>Index</h1>
@@ -15,9 +26,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Language)
             </th>
@@ -34,7 +43,7 @@
                 @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
+                Has Image
             </th>
             <th></th>
         </tr>
@@ -45,9 +54,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Language)
             </td>
@@ -64,12 +71,12 @@
                 @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
+                    <i class="@HasImage(item)"></i>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fa-solid fa-circle-info"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
             </td>
         </tr>
 }
